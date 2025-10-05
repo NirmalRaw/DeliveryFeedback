@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMFO MOMO Delivery Feedback</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --brand-gold: #FFC107;
+            --dark-bg: #121212;
+            --surface-bg: #1E1E1E;
+            --input-bg: #2C2C2C;
+            --text-primary: #E0E0E0;
+            --text-secondary: #A0A0A0;
+            --border-radius-md: 12px;
+            --border-radius-sm: 8px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background-color: var(--surface-bg);
+            padding: 25px;
+            border-radius: var(--border-radius-md);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            text-align: center;
+            color: var(--brand-gold);
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        .form-group { margin-bottom: 24px; }
+        label, .label-header {
+            display: block;
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+        }
+        input[type="text"], input[type="tel"], textarea {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--input-bg);
+            border: 1px solid transparent;
+            border-radius: var(--border-radius-sm);
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        input[type="text"]::placeholder, input[type="tel"]::placeholder, textarea::placeholder { color: #6c757d; }
+        input[type="text"]:focus, input[type="tel"]:focus, textarea:focus {
+            outline: none;
+            border-color: var(--brand-gold);
+            box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.2);
+        }
+        textarea { resize: vertical; min-height: 100px; }
+        .star-rating {
+            display: flex; flex-direction: row-reverse; justify-content: flex-end; gap: 4px;
+        }
+        .star-rating input[type="radio"] { display: none; }
+        .star-rating label {
+            font-size: 2rem; color: #444; cursor: pointer; transition: color 0.2s ease; margin-bottom: 0; padding: 0 2px;
+        }
+        .star-rating input[type="radio"]:checked ~ label,
+        .star-rating label:hover,
+        .star-rating label:hover ~ label { color: var(--brand-gold); }
+        
+        /* New Styles for Button-like Radio Inputs */
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .radio-group input[type="radio"] { display: none; }
+        .radio-group label {
+            flex-grow: 1;
+            text-align: center;
+            padding: 10px 15px;
+            background-color: var(--input-bg);
+            color: var(--text-secondary);
+            border: 1px solid #444;
+            border-radius: var(--border-radius-sm);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+        .radio-group input[type="radio"]:checked + label {
+            background-color: var(--brand-gold);
+            color: #000;
+            border-color: var(--brand-gold);
+            font-weight: 600;
+        }
+
+        button[type="submit"] {
+            width: 100%; padding: 16px; background-color: var(--brand-gold); color: #000; border: none;
+            border-radius: var(--border-radius-sm); font-size: 1rem; font-weight: 600; cursor: pointer;
+            margin-top: 10px; transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+        button[type="submit"]:hover { background-color: #ffb300; }
+        button[type="submit"]:active { transform: scale(0.98); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Home Delivery Feedback 🛵</h1>
+    
+    <form name="delivery-feedback" method="POST" data-netlify="true" action="/delivery-thank-you.html">
+        <input type="hidden" name="form-name" value="delivery-feedback" />
+        
+        <div class="form-group">
+            <label for="mobile-field">Mobile Number / मोबाइल नंबर (Optional)</label>
+            <input type="tel" id="mobile-field" name="mobile-number" placeholder="Enter your mobile number">
+        </div>
+
+        <div class="form-group">
+            <label class="label-header">Phone / Order Taker's Behavior / ऑर्डर लेने वाले का व्यवहार</label>
+            <div class="star-rating">
+                <input type="radio" id="order5" name="order-taker-behavior" value="5"><label for="order5">&#9733;</label>
+                <input type="radio" id="order4" name="order-taker-behavior" value="4"><label for="order4">&#9-733;</label>
+                <input type="radio" id="order3" name="order-taker-behavior" value="3"><label for="order3">&#9733;</label>
+                <input type="radio" id="order2" name="order-taker-behavior" value="2"><label for="order2">&#9733;</label>
+                <input type="radio" id="order1" name="order-taker-behavior" value="1"><label for="order1">&#9733;</label>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="label-header">Order Accuracy / ऑर्डर सटीकता</label>
+            <div class="radio-group">
+                <input type="radio" id="acc-yes" name="order-accuracy" value="Yes, Correct"><label for="acc-yes">✅ Yes, Correct</label>
+                <input type="radio" id="acc-no" name="order-accuracy" value="No, Incorrect"><label for="acc-no">❌ No, Incorrect</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="label-header">Delivery Time / डिलीवरी का समय</label>
+            <div class="radio-group">
+                <input type="radio" id="time-on-time" name="delivery-time" value="On Time"><label for="time-on-time">On Time</label>
+                <input type="radio" id="time-late" name="delivery-time" value="A Little Late"><label for="time-late">A Little Late</label>
+                <input type="radio" id="time-very-late" name="delivery-time" value="Very Late"><label for="time-very-late">Very Late</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="label-header">Delivery Person Behavior / डिलीवरी पर्सन का व्यवहार</label>
+            <div class="star-rating">
+                <input type="radio" id="delivery5" name="delivery-person-behavior" value="5"><label for="delivery5">&#9733;</label>
+                <input type="radio" id="delivery4" name="delivery-person-behavior" value="4"><label for="delivery4">&#9733;</label>
+                <input type="radio" id="delivery3" name="delivery-person-behavior" value="3"><label for="delivery3">&#9733;</label>
+                <input type="radio" id="delivery2" name="delivery-person-behavior" value="2"><label for="delivery2">&#9733;</label>
+                <input type="radio" id="delivery1" name="delivery-person-behavior" value="1"><label for="delivery1">&#9733;</label>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="label-header">Packaging Quality / पैकेजिंग की गुणवत्ता</label>
+            <div class="star-rating">
+                <input type="radio" id="packaging5" name="packaging-quality" value="5"><label for="packaging5">&#9733;</label>
+                <input type="radio" id="packaging4" name="packaging-quality" value="4"><label for="packaging4">&#9733;</label>
+                <input type="radio" id="packaging3" name="packaging-quality" value="3"><label for="packaging3">&#9733;</label>
+                <input type="radio" id="packaging2" name="packaging-quality" value="2"><label for="packaging2">&#9733;</label>
+                <input type="radio" id="packaging1" name="packaging-quality" value="1"><label for="packaging1">&#9733;</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="label-header">Food Quality / खाने की गुणवत्ता</label>
+            <div class="star-rating">
+                <input type="radio" id="food5" name="food-quality" value="5"><label for="food5">&#9733;</label>
+                <input type="radio" id="food4" name="food-quality" value="4"><label for="food4">&#9733;</label>
+                <input type="radio" id="food3" name="food-quality" value="3"><label for="food3">&#9733;</label>
+                <input type="radio" id="food2" name="food-quality" value="2"><label for="food2">&#9733;</label>
+                <input type="radio" id="food1" name="food-quality" value="1"><label for="food1">&#9733;</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="label-header">Food Temperature / भोजन का तापमान</label>
+            <div class="radio-group">
+                <input type="radio" id="temp-hot" name="food-temperature" value="Hot"><label for="temp-hot">🔥 Hot</label>
+                <input type="radio" id="temp-warm" name="food-temperature" value="Warm"><label for="temp-warm">😊 Warm</label>
+                <input type="radio" id="temp-cold" name="food-temperature" value="Cold"><label for="temp-cold">🧊 Cold</label>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="comments-field">Additional Comments / अन्य सुझाव</label>
+            <textarea id="comments-field" name="comments" rows="4" placeholder="Tell us more about your experience..."></textarea>
+        </div>
+        
+        <button type="submit">Submit Delivery Feedback</button>
+    </form>
+</div>
+
+</body>
+</html>
